@@ -8,6 +8,7 @@
     <groupId>com.walien</groupId>
     <artifactId>simple-fs</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <dependencies>
 
