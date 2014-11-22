@@ -23,6 +23,9 @@ public class CdCommand extends FSCommand {
         }
 
         Directory cd = getFSManager().cd(args.get(0));
+        if (cd == null) {
+            return error(shell, "not found directory : " + args.get(0));
+        }
         shell.append(cd.getPath());
 
         return this;
