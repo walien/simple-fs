@@ -21,7 +21,11 @@ public abstract class AbstractShellCommand implements ShellCommand {
     }
 
     protected ImmutableList<String> args(String line) {
-        return ImmutableList.copyOf(line.substring(line.indexOf(" ")).trim().split(" "));
+        int indexOf = line.indexOf(" ");
+        if (indexOf == -1) {
+            return ImmutableList.of();
+        }
+        return ImmutableList.copyOf(line.substring(indexOf).trim().split(" "));
     }
 
     @Override

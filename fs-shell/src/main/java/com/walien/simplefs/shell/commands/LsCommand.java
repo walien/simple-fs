@@ -23,7 +23,7 @@ public class LsCommand extends FSCommand {
             return error(shell, "use 'ls {path}'");
         }
 
-        List<INode> nodes = getFSManager().ls(args.get(0));
+        List<INode> nodes = getFSManager().ls(args.size() > 0 ? args.get(0) : null);
         if (nodes == null) {
             return error(shell, "'" + args.get(0) + "' not found");
         }

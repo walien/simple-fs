@@ -36,7 +36,9 @@ public class SimpleFSShell implements Shell {
                 .register(new ExitCommand())
                 .register(new CommandsListCommand())
                 .register(new CdCommand())
-                .register(new PwdCommand());
+                .register(new PwdCommand())
+                .register(new LsCommand())
+                .register(new MkdirCommand());
 
         new SimpleFSShell(new ConsoleReader(), repository).start();
     }
@@ -71,10 +73,8 @@ public class SimpleFSShell implements Shell {
             } catch (ExitShell e) {
                 exit = terminate();
             } catch (Exception e) {
-                // Nothing to do
+                e.printStackTrace();
             }
-
-            append("");
         }
     }
 
