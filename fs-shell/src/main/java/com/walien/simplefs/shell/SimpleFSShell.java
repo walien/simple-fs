@@ -38,7 +38,8 @@ public class SimpleFSShell implements Shell {
                 .register(new CdCommand())
                 .register(new PwdCommand())
                 .register(new LsCommand())
-                .register(new MkdirCommand());
+                .register(new MkdirCommand())
+                .register(new TouchCommand());
 
         new SimpleFSShell(new ConsoleReader(), repository).start();
     }
