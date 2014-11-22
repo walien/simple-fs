@@ -98,13 +98,16 @@ public class FileSystemManager implements IFSManager {
                 break;
             default:
                 newSource = ((Directory) src).getChildren().get(nodeName);
+                if (newSource == null) {
+                    ((Directory) src).getChildren().put(nodeName, newSource = new Directory().setName(nodeName).setParent((Directory) src));
+                }
                 break;
         }
 
         // Continue
         if (elements.size() == 0) {
             // Case dir/file : Done !
-            if (newSource == null && nodeTypeToCreate != null) {
+            if (nodeTypeToCreate != null) {
                 // Create a new node
                 switch (nodeTypeToCreate) {
                     case DIR:
