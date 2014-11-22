@@ -39,13 +39,13 @@ public class SimpleFSShell implements Shell {
                 .register(new PwdCommand())
                 .register(new LsCommand())
                 .register(new MkdirCommand())
-                .register(new TouchCommand());
+                .register(new TouchCommand())
+                .register(new TreeCommand());
 
         new SimpleFSShell(new ConsoleReader(), repository).start();
     }
 
     protected void initConsole() {
-        console.setPrompt(PROMPT);
         console.setHistoryEnabled(true);
     }
 
@@ -58,6 +58,7 @@ public class SimpleFSShell implements Shell {
     protected void start() throws IOException {
 
         initConsole();
+        resetPrompt();
         banner();
         installCompleters();
 
@@ -65,6 +66,7 @@ public class SimpleFSShell implements Shell {
 
         while (!exit) {
 
+            resetPrompt();
             String line = ask();
 
             try {
@@ -77,6 +79,10 @@ public class SimpleFSShell implements Shell {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void resetPrompt() {
+        console.setPrompt(FileSystemManager.getInstance().pwd().getPath() + " " + PROMPT);
     }
 
     private boolean terminate() throws IOException {

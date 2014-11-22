@@ -98,7 +98,7 @@ public class FileSystemManager implements IFSManager {
                 break;
             default:
                 newSource = ((Directory) src).getChildren().get(nodeName);
-                if (newSource == null) {
+                if (newSource == null && nodeTypeToCreate != null) {
                     ((Directory) src).getChildren().put(nodeName, newSource = new Directory().setName(nodeName).setParent((Directory) src));
                 }
                 break;
@@ -229,6 +229,7 @@ public class FileSystemManager implements IFSManager {
         return true;
     }
 
+    @Override
     public Directory getDirectory(String path) {
         INode node = getNode(path, null);
         if (null == node || node.getNodeType() != NodeType.DIR) {
@@ -237,6 +238,7 @@ public class FileSystemManager implements IFSManager {
         return (Directory) node;
     }
 
+    @Override
     public File getFile(String path) {
         INode node = getNode(path, null);
         if (null == node || node.getNodeType() != NodeType.FILE) {

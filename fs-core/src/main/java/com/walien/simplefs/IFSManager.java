@@ -18,6 +18,7 @@ package com.walien.simplefs;
 
 import com.walien.simplefs.domain.INode;
 import com.walien.simplefs.domain.impl.Directory;
+import com.walien.simplefs.domain.impl.File;
 
 import java.util.List;
 
@@ -42,4 +43,8 @@ public interface IFSManager {
     List<INode> ls(String path);
 
     String cat(String path);
+
+    Directory getDirectory(String path);
+
+    File getFile(String path);
 }
