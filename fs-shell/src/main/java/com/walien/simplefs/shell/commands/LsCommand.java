@@ -29,7 +29,7 @@ public class LsCommand extends FSCommand {
         }
 
         for (INode node : nodes) {
-            shell.append(node.getNodeType() + " \t - " + node.getName());
+            shell.append(node.getNodeType().name().substring(0, 3) + " - " + node.getName());
         }
 
         return this;
