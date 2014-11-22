@@ -39,7 +39,7 @@ public class FileSystemManagerTest {
         // L3
         log.addChildNode(file);
 
-        return new FileSystemManager().setRootDir(root);
+        return FileSystemManager.getInstance().setRootDir(root);
     }
 
     @Test

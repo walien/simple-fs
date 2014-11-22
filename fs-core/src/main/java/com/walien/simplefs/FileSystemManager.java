@@ -34,11 +34,23 @@ import java.util.List;
 
 public class FileSystemManager implements IFSManager {
 
+    private static FileSystemManager _INSTANCE;
+
     private Directory rootDir;
 
     private Directory currentDir;
 
     private FSEventManager fsEventManager = new FSEventManager();
+
+    private FileSystemManager() {
+    }
+
+    public static FileSystemManager getInstance() {
+        if (_INSTANCE == null) {
+            _INSTANCE = new FileSystemManager();
+        }
+        return _INSTANCE;
+    }
 
     public FileSystemManager setRootDir(Directory rootFolder) {
         this.rootDir = this.currentDir = rootFolder;
