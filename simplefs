@@ -1,2 +1,3 @@
 #!/bin/bash
-java -jar fs-shell/target/fs-shell-1.0-SNAPSHOT.jar
+mvn clean package -DskipTests
+java -jar fs-shell/target/fs-shell-release.jar
