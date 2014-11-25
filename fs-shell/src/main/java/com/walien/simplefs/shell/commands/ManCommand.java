@@ -18,11 +18,11 @@ public class ManCommand extends AbstractShellCommand {
     public ShellCommand start(String line, Shell shell) throws IOException {
 
         ImmutableList<String> args = args(line);
-        String commandAlias = args.get(0);
-
-        if (commandAlias == null) {
+        if (args.size() != 1) {
             return error(shell, "use : 'man {commandAlias}'");
         }
+
+        String commandAlias = args.get(0);
 
         Optional<AbstractShellCommand> shellCommand = shell.repository().find(commandAlias);
         if (!shellCommand.isPresent()) {
