@@ -56,6 +56,7 @@ public class Directory extends AbstractNode implements Comparable<INode> {
     }
 
     public void addChildNode(INode node) {
+        node.setParent(this);
         children.put(node.getName(), node);
     }
 

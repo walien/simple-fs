@@ -99,7 +99,7 @@ public class FileSystemManager implements IFSManager {
             default:
                 newSource = ((Directory) src).getChildren().get(nodeName);
                 if (newSource == null && nodeTypeToCreate != null) {
-                    ((Directory) src).getChildren().put(nodeName, newSource = new Directory().setName(nodeName).setParent((Directory) src));
+                    ((Directory) src).addChildNode(newSource = new Directory().setName(nodeName));
                 }
                 break;
         }
@@ -111,12 +111,12 @@ public class FileSystemManager implements IFSManager {
                 // Create a new node
                 switch (nodeTypeToCreate) {
                     case DIR:
-                        INode newDir = new Directory().setName(nodeName).setParent((Directory) src);
+                        INode newDir = new Directory().setName(nodeName);
                         ((Directory) src).addChildNode(newDir);
                         launchEvent(FSEvent.of(FSEventType.MKDIR, newDir));
                         return newDir;
                     case FILE:
-                        INode newFile = new File().setName(nodeName).setParent((Directory) src);
+                        INode newFile = new File().setName(nodeName);
                         ((Directory) src).addChildNode(newFile);
                         launchEvent(FSEvent.of(FSEventType.MKFILE, newFile));
                         return newFile;
@@ -223,7 +223,6 @@ public class FileSystemManager implements IFSManager {
         // 2. Clone the node to copy (if it is a directory, cloning operation
         // will be recursive) and add it as child of the dest directory
         INode clonedNode = FSUtils.cloneNode(src);
-        clonedNode.setParent(destDir);
         destDir.addChildNode(clonedNode);
 
         return true;
